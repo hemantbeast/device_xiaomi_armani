@@ -339,4 +339,6 @@
 
     <!-- Configuration to support SIM contact batch operation
     <bool name="config_sim_phonebook_batch_operation">false</bool> -->
+
+    <bool name="config_showNavigationBar">true</bool>
 </resources>
