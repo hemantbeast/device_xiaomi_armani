@@ -64,8 +64,8 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
 BOARD_FLASH_BLOCK_SIZE             := 131072
 
 # FM
-TARGET_QCOM_NO_FM_FIRMWARE := true
-BOARD_HAVE_QCOM_FM := true
+#TARGET_QCOM_NO_FM_FIRMWARE := true
+#BOARD_HAVE_QCOM_FM := true
 
 # Graphics
 TARGET_USES_C2D_COMPOSITION := true
@@ -132,9 +132,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_NO_SECURE_DISCARD := true
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
