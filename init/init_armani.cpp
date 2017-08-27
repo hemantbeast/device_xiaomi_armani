@@ -31,10 +31,11 @@
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include "vendor_init.h"
+#include <android-base/properties.h>
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
+
+namespace android {
+namespace init {
 
 void property_override(char const prop[], char const value[])
 {
@@ -49,11 +50,11 @@ void property_override(char const prop[], char const value[])
 
 void vendor_load_properties()
 {
-    std::string platform = property_get("ro.board.platform");
+    std::string platform = android::base::GetProperty("ro.board.platform");
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string modem = property_get("ro.boot.modem");
+    std::string modem = android::base::GetProperty("ro.boot.modem");
 
     if (modem == "HM1AW") {
         property_override("ro.product.model", "HM 1SW");
@@ -66,3 +67,6 @@ void vendor_load_properties()
     property_override("ro.build.description", "armani-user 4.4.4 KTU84P V8.0.1.0.KHCMIDG release-keys");
     property_override("ro.build.fingerprint", "Xiaomi/armani/armani:4.4.4/KTU84P/V8.0.1.0.KHCMIDG:user/release-keys");
 }
+
+} // namespace init
+} // namespace android
