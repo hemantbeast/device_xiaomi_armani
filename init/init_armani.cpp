@@ -33,6 +33,7 @@
 
 #include <android-base/properties.h>
 #include "property_service.h"
+#include "vendor_init.h"
 
 namespace android {
 namespace init {
