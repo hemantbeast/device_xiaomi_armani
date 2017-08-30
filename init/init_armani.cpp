@@ -31,38 +31,29 @@
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
+#include <android-base/properties.h>
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
 
-void property_override(char const prop[], char const value[])
-{
-    prop_info *pi;
-
-    pi = (prop_info*) __system_property_find(prop);
-    if (pi)
-        __system_property_update(pi, value, strlen(value));
-    else
-        __system_property_add(prop, strlen(prop), value, strlen(value));
-}
+using android::base::GetProperty;
+using android::base::SetProperty;
 
 void vendor_load_properties()
 {
-    std::string platform = property_get("ro.board.platform");
+    std::string platform = GetProperty("ro.board.platform", "");
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string modem = property_get("ro.boot.modem");
+    std::string modem = GetProperty("ro.boot.modem", "");
 
     if (modem == "HM1AW") {
-        property_override("ro.product.model", "HM 1SW");
+        SetProperty("ro.product.model", "HM 1SW");
     } else if (modem == "HM1AC") {
-        property_override("ro.product.model", "HM 1SC");
+        SetProperty("ro.product.model", "HM 1SC");
     }
 
-    property_override("ro.product.device", "armani");
-    property_override("ro.build.product", "armani");
-    property_override("ro.build.description", "armani-user 4.4.4 KTU84P V8.0.1.0.KHCMIDG release-keys");
-    property_override("ro.build.fingerprint", "Xiaomi/armani/armani:4.4.4/KTU84P/V8.0.1.0.KHCMIDG:user/release-keys");
+    SetProperty("ro.product.device", "armani");
+    SetProperty("ro.build.product", "armani");
+    SetProperty("ro.build.description", "armani-user 4.4.4 KTU84P V8.0.1.0.KHCMIDG release-keys");
+    SetProperty("ro.build.fingerprint", "Xiaomi/armani/armani:4.4.4/KTU84P/V8.0.1.0.KHCMIDG:user/release-keys");
 }
