@@ -34,6 +34,8 @@ on early-init
     symlink /data/tombstones /tombstones
 
 on init
+    export LD_SHIM_LIBS /system/bin/mpdecision|libshims_atomic.so
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -298,6 +300,7 @@ service mpdecision /system/bin/mpdecision --avg_comp
     user root
     group root system
     disabled
+    setenv LD_PRELOAD /system/lib/libshims_atomic.so
 
 service thermal-engine /system/bin/thermal-engine
     class main
