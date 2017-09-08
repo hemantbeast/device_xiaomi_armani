@@ -216,7 +216,7 @@ vendor/lib/libxml.so
 
 # Sensors
 bin/sensors.qcom
-vendor/lib/hw/sensors.msm8226.so
+lib/hw/sensors.msm8226.so:lib/sensors.armani.so
 vendor/lib/libAKM8963.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
